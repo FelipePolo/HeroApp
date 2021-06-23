@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">HeroApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="fight">FIGHT!</string>
+    <string name="run">RUN!</string>
+    <string name="searchhero">Find your hero</string>
+    <string name="completeName"> Complete Name</string>
+
+</resources>

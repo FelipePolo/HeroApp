@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.HeroListActivity.Fragments.vsHeroes.FragmentHerosVs">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/ivfHero"
+                android:src="@drawable/unknowhero"
+                android:layout_width="120dp"
+                android:layout_height="80dp">
+            </ImageView>
+            <TextView
+                android:id="@+id/tvfHeroSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed: 40">
+            </TextView>
+            <TextView
+                android:id="@+id/tvfHeroPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Power: 40">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <Button
+                android:layout_margin="5dp"
+                android:id="@+id/bFight"
+                android:backgroundTint="@color/secondary"
+                android:text="@string/fight"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+            <Button
+                android:layout_margin="5dp"
+                android:id="@+id/bRun"
+                android:text="@string/run"
+                android:backgroundTint="@color/secondary"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivfHero2"
+                android:src="@drawable/unknowhero"
+                android:layout_width="120dp"
+                android:layout_height="80dp">
+            </ImageView>
+            <TextView
+                android:id="@+id/tvfHeroSpeed2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed: 40">
+            </TextView>
+            <TextView
+                android:id="@+id/tvfHeroPower2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Power: 40">
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
