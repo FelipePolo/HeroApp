@@ -1,11 +1,10 @@
 package com.felipepolo.superheroapp.ui.HeroDetailActivity
 
 import android.annotation.SuppressLint
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import com.felipepolo.superheroapp.R
+import android.view.MenuItem
 import com.felipepolo.superheroapp.data.userRemoteDataSource.HeroApiRetrofitServices.dataStructure.Hero
 import com.felipepolo.superheroapp.databinding.ActivityHeroDetailBinding
 import com.squareup.picasso.Picasso
@@ -32,6 +31,15 @@ class HeroDetailActivity : AppCompatActivity() {
         setupWork()
         setupConections()
     }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home){
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun setupToolbar() {
         supportActionBar?.title = hero.name

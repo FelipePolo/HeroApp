@@ -63,7 +63,7 @@ class HeroListViewModel(private val userRepository: UserRepository) : ViewModel(
                 _loading.value = false
             }catch (e: Exception){
                 _loading.value = false
-                _errorEvent.value = e.message
+                setError(e.message.toString())
             }
         }
     }
@@ -79,16 +79,17 @@ class HeroListViewModel(private val userRepository: UserRepository) : ViewModel(
                     _heroList.value = heroList
                 }else{
                     _loading.value = false
-                    _errorEvent.value = "character with given name not found"
+                    _heroList.value = savedCurrentSimpleList
+                    setError("character with given name not found")
                 }
             }catch (e: Exception){
                 _loading.value = false
-                _errorEvent.value = e.message
+                setError(e.message.toString())
+                _heroList.value = savedCurrentSimpleList
             }
 
         }
     }
-
 
     fun onBtnVsClickListener(hero: Hero) {
         if (figthFinished) {
@@ -98,7 +99,7 @@ class HeroListViewModel(private val userRepository: UserRepository) : ViewModel(
                 figthFinished = false
             }
         }else{
-            _errorEvent.value = "the heroes are waiting to compete in the test of your choice"
+            setError("the heroes are waiting to compete in the test of your choice")
         }
     }
 
@@ -110,22 +111,21 @@ class HeroListViewModel(private val userRepository: UserRepository) : ViewModel(
             _hero2.value = hero
             newHero2 = false
         }else{
-            _errorEvent.value = "you can't select the same hero"
+            setError("you can't select the same hero")
         }
     }
 
     fun onBtnBattleClickListener(mode: String) {
         _herosReadyToFight.value = false
         if (mode == "speed") {
-            _heroWinner.value =
-                Winner(hero1.value!!.powerstats.speed, hero2.value!!.powerstats.speed)
+            _heroWinner.value = Winner(hero1.value!!.powerstats.speed, hero2.value!!.powerstats.speed)
         } else {
-            _heroWinner.value =
-                Winner(hero1.value!!.powerstats.power, hero2.value!!.powerstats.power)
+            _heroWinner.value = Winner(hero1.value!!.powerstats.power, hero2.value!!.powerstats.power)
         }
         newHero1 = true
         newHero2 = true
         figthFinished = true
+        _heroWinner.value = null
     }
 
     private fun Winner(statHero1: String?, statHero2: String?): Hero? {
@@ -135,11 +135,18 @@ class HeroListViewModel(private val userRepository: UserRepository) : ViewModel(
             } else if (statHero1.toInt() < statHero2.toInt()) {
                 return hero2.value
             }
+        }else{
+            setError("Maybe some hero is so powerful that he has not calculated any of his statistics")
         }
         return null
     }
 
     fun returnCurrentList() {
         _heroList.value = savedCurrentSimpleList
+    }
+
+    private fun setError(msj: String){
+        _errorEvent.value = msj
+        _errorEvent.postValue("")
     }
 }

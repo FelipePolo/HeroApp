@@ -62,10 +62,12 @@ class FargmentListHero : Fragment() {
 
     private fun showErrors() {
         model.errorEvent.observe(viewLifecycleOwner, Observer {
-            val dialog = AlertDialog.Builder(requireContext()).create()
-            dialog.setTitle("UPS...")
-            dialog.setMessage(it)
-            dialog.show()
+            if(it.isNotEmpty()) {
+                val dialog = AlertDialog.Builder(requireContext()).create()
+                dialog.setTitle("UPS...")
+                dialog.setMessage(it)
+                dialog.show()
+            }
         })
     }
 
@@ -80,7 +82,7 @@ class FargmentListHero : Fragment() {
 
     private fun ifNeedHeros() {
         model.newHeroAddedEvent.observe(viewLifecycleOwner, Observer {
-            if (adapter.heros.size < 3) {
+            if (adapter.heros.size < 5) {
                 model.getHeros()
             }
         })

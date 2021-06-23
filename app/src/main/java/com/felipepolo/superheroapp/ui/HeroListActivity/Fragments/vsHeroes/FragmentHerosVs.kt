@@ -31,11 +31,6 @@ class FragmentHerosVs : Fragment() {
         model = (context as MainHeroListActivity).viewModel
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +41,6 @@ class FragmentHerosVs : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupHero1()
         setupHero2()
         setupBtns()
@@ -54,18 +48,15 @@ class FragmentHerosVs : Fragment() {
     }
 
     private fun setupWinner() {
-
         model.heroWinner.observe(viewLifecycleOwner, Observer {
-            val dialog = AlertDialog.Builder(requireContext()).create()
-            var message = "NONE !, perhaps these heroes were so strong that their abilities cannot be calculated!"
-            var title = "And the winner is..."
-            if (it != null) {
-                title = "${it.name} is the WINNER"
-                message = "${it.name} has proven to be a superior hero"
+            if(it != null){
+                val dialog = AlertDialog.Builder(requireContext()).create()
+                val title = "${it.name} is the WINNER"
+                val message = "${it.name} has proven to be a superior hero"
+                dialog.setTitle(title)
+                dialog.setMessage(message)
+                dialog.show()
             }
-            dialog.setTitle(title)
-            dialog.setMessage(message)
-            dialog.show()
         })
     }
 

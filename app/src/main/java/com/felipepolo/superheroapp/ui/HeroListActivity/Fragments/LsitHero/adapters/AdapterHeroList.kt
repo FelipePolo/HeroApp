@@ -16,24 +16,29 @@ class AdapterHeroList(
 ) : RecyclerView.Adapter<AdapterHeroList.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.template_hero_item_list, parent, false)
-        val ViewHolder = ViewHolder(itemView,onItemHeroClickListener,onBtnVsClickListener)
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.template_hero_item_list, parent, false)
+        val ViewHolder = ViewHolder(itemView, onItemHeroClickListener, onBtnVsClickListener)
         return ViewHolder
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) { holder.bind(heros[position]) }
-    override fun getItemCount(): Int  = heros.count()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(heros[position])
+    }
+
+    override fun getItemCount(): Int = heros.count()
 
     class ViewHolder(
         itemView: View,
         private val onItemHeroClickListener: (hero: Hero) -> Unit,
-        private val onBtnVsClickListener: (hero: Hero) -> Unit) : RecyclerView.ViewHolder(itemView){
+        private val onBtnVsClickListener: (hero: Hero) -> Unit
+    ) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = TemplateHeroItemListBinding.bind(itemView)
 
-        fun bind(hero: Hero){
+        fun bind(hero: Hero) {
             // block of stats(attack, defense, healt, speed)
-            binding.tvhp.text =  hero.powerstats.durability
+            binding.tvhp.text = hero.powerstats.durability
             binding.tvattack.text = hero.powerstats.power
             binding.tvdefense.text = hero.powerstats.strength
             binding.tvspeed.text = hero.powerstats.speed
@@ -41,12 +46,12 @@ class AdapterHeroList(
             // name and image
             binding.tvHeroName.text = hero.name
             Picasso.get()
-                    .load(hero.image.url)
-                    .into(binding.ivHero)
+                .load(hero.image.url)
+                .into(binding.ivHero)
 
             // clickListeners
-            binding.heroItem.setOnClickListener{ onItemHeroClickListener(hero)}
-            binding.bVs.setOnClickListener{onBtnVsClickListener(hero)}
+            binding.heroItem.setOnClickListener { onItemHeroClickListener(hero) }
+            binding.bVs.setOnClickListener { onBtnVsClickListener(hero) }
         }
     }
 }
